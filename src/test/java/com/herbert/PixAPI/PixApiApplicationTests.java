@@ -10,4 +10,9 @@ class PixApiApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void applicationTest(){
+		PixApiApplication.main(new String[]{});
+	}
+
 }

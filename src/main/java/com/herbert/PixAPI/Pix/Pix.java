@@ -1,12 +1,11 @@
 package com.herbert.PixAPI.Pix;
 
-import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -14,31 +13,42 @@ import java.util.UUID;
 @Table
 public class Pix {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(name = "id", nullable = false)
     private UUID id;
     @NotNull
-    @NotBlank(message = "Campo tipoChave e obrigatorio ser corrente ou " +
-            "poupanca")
+    @NotBlank(message = "Campo tipoChave e obrigatorio")
+    @Pattern(regexp = "^email|celular|cpf|cnpj$", message = "Tipo chave deve ser " +
+            "email," +
+            " celular, cpf, cpnj")
     private String tipoChave;
 
     @NotNull
     private String valorChave;
     @NotNull
-    @Max(10)
+    @Pattern(regexp = "^corrente|poupança$", message = "Tipo conta deve ser " +
+            "corrente ou poupança")
     private String tipoConta;
     @NotNull
-    @Max(4)
+    @Min(value = 1, message = "Numero agencia invalido")
+    @Max(value = 9999, message = "Excedeu o tamanho maximo do numero da " +
+            "agencia")
     private int numeroAgencia;
     @NotNull
-    @Max(8)
+    @Min(value = 1, message = "Numero conta invalido")
+    @Max(value = 99999999, message = "Excedeu o tamanho maximo do numero da " +
+            "conta")
     private int numeroConta;
     @NotNull
     private char tipoPessoa;
     @NotNull
-    @Max(30)
+    @Size(min = 2, max = 30, message = "Nome correntista excedeu o tamanho " +
+            "maximo")
     private String nomeCorrentista;
-    @Max(45)
+    @Size(min = 2, max = 45, message = "Sobrenome correntista excedeu o " +
+            "tamanho maximo")
     private String sobrenomeCorrentista = "";
     @CreationTimestamp
     private LocalDateTime inclusaoChave;

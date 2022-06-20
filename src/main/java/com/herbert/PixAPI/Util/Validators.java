@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.InputMismatchException;
 import java.util.regex.Pattern;
 
-public class Validator {
+public class Validators {
     public static boolean isCPF(String CPF) {
 
         CPF = removeCaracteresEspeciais(CPF);
@@ -146,7 +146,8 @@ public class Validator {
 
     public static boolean isPhoneNumber(String phoneNumber) {
         // TODO: regex phone
-        String phoneRegexPattner = "";
+        String phoneRegexPattner = "^(\\+\\d{1,3}( )?)?((\\(\\d{1," +
+                "3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
         return Pattern.compile(phoneRegexPattner).matcher(phoneNumber).matches();
     }
 }

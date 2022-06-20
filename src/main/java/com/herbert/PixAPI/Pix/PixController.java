@@ -24,12 +24,12 @@ public class PixController {
     }
 
     @PutMapping
-    public ResponseEntity<Object> update(@RequestBody Pix pix) {
+    public ResponseEntity<?> update(@RequestBody Pix pix) {
         return pixService.updatePix(pix);
     }
 
-    @DeleteMapping(path = "id")
-    public ResponseEntity<Object> delete(@PathVariable("id")UUID id){
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity<?> delete(@PathVariable("id")UUID id){
         return pixService.disablePix(id);
     }
 
