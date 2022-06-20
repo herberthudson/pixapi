@@ -78,6 +78,7 @@ public class PixService {
         pixToUpdate.setNumeroConta(pix.getNumeroConta());
         pixToUpdate.setNomeCorrentista(pix.getNomeCorrentista());
         pixToUpdate.setSobrenomeCorrentista(pix.getSobrenomeCorrentista());
+        pixToUpdate.setInclusaoChave(LocalDateTime.now());
 
         try {
             Pix updatedPix = pixRepository.save(pixToUpdate);
