@@ -35,16 +35,6 @@ public class PixController {
 
     @GetMapping(path = "/search")
     public ResponseEntity<Object> find(@RequestParam Map<String, Object> findParams) {
-//        HashMap<String, Object> findParams = new HashMap<String, Object>();
-//
-//        findParams.put("id", id);
-//        findParams.put("tipoChave", tipoChave);
-//        findParams.put("numeroAgencia", numeroAgencia);
-//        findParams.put("numeroConta", numeroConta);
-//        findParams.put("nomeCorrentista", nomeCorrentista);
-//        findParams.put("inclusaoChave", inclusaoChave);
-//        findParams.put("desativacaoChave", desativacaoChave);
-
         return pixService.find(findParams);
     }
 }
