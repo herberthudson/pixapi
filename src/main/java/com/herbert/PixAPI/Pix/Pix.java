@@ -41,7 +41,6 @@ public class Pix {
     @Max(45)
     private String sobrenomeCorrentista = "";
     @CreationTimestamp
-    @UpdateTimestamp
     private LocalDateTime inclusaoChave;
     @NotNull
     private boolean inativa = false;
